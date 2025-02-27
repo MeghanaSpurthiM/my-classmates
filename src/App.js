@@ -2,21 +2,28 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Using Stack layout from ReactBootstrap
 import Stack from 'react-bootstrap/Stack';
 
+// Using Bootstrap Components for responsive design
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 
-
+// React Component to return one card of person's information
 function Row(props) {
-  const [likes, setLikes] = React.useState(0);
-  function handleClick() {
-    setLikes(likes + 1);
-  }
+
+    // To keep track of the number of clicks on the like button
+    const [likes, setLikes] = React.useState(0);
+    
+    //Event Handler for the OnClick event on like button
+    function handleClick() {
+      setLikes(likes + 1);
+    }
+
+  // Reads the passed person information using props - puts them into a card and returns the component
   return (
     <Card id="customCard">
-      
       <Card.Body id="cb">
       <ul>
         <Card.Text>
@@ -26,52 +33,51 @@ function Row(props) {
           <li>Favorite Food: {(props.person.favoriteFood)}
           <Button variant="secondary" onClick={handleClick} style={{float: 'right'}}>Like({likes})</Button>
           </li>
-
-          
         </Card.Text>
         </ul>
       </Card.Body>
-      
     </Card>
    
   );
 }
 
+// Component for Title - different props can generate components with different text - it is dynamic
 function Header({ title }) {
   return <h1><Badge bg="secondary">{title ? title : 'Default Title'}</Badge></h1>;
 } 
 
+// Starting point of execution"
 function App() {
   
+  // People array of information with 3 attributes each 
+  // Please feel free to add more entries to the array and run it - the app is coded to be dynamic 
+  // and will generate the new card components on the fly
+
   const People = [{'name':'Meghana','favoriteFood':'Tiramisu','favoriteColor':'Blue'},
     {'name':'Spurthi','favoriteFood':'Rasmalai','favoriteColor':'Green'},
-    {'name':'Alice','favoriteFood':'Pizza','favoriteColor':'Orange'},
-    
-  
+    {'name':'Aj','favoriteFood':'Pizza','favoriteColor':'Orange'},
   ]
  
   document.title = "MyClassmates"
 
- 
   return (
   
     <div>
       <Header title="My Classmates" />
-      <ul>
-      <Stack>
-        {People.map((person) => (
-          
-          <Row person={person} key={person.name}></Row>
-         
-        ))}
-         </Stack>
+      
+      <ul>  
+        {/* Using stack layout from ReactBootstrap to pile the records */}
+          <Stack>
+            {/* Reading each record from the People array and using map() to iterate through the list */}
+                {People.map((person) => (
+                  // Card component for each record
+                  <Row person={person} key={person.name}></Row>
+                ))}
+          </Stack>
       </ul>
     </div>
-  );
+   );
 }
    
-    
 
-
-
-  export default App;
+export default App;
