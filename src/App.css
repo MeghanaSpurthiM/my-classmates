@@ -1,19 +1,14 @@
 #customCard{
   background-color: lightgrey;
-  margin-bottom: 1%;
-  width: 50%;
-  height: auto;
   padding: 0%;
   margin-left: 0%;
 }
 
-
-h1
+.p-2
 {
-  margin-left: 2%;
-  padding-top: 2%;
-  padding: auto;
+  padding: 0% !important;
 }
+
 
 ul{
   padding-left: 2% !important;

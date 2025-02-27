@@ -2,16 +2,16 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 // Using Stack layout from ReactBootstrap
 import Stack from 'react-bootstrap/Stack';
 
 // Using Bootstrap Components for responsive design
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
 
 // React Component to return one card of person's information
-function Row(props) {
+function PersonRow(props) {
 
     // To keep track of the number of clicks on the like button
     const [likes, setLikes] = React.useState(0);
@@ -26,14 +26,22 @@ function Row(props) {
     <Card id="customCard">
       <Card.Body id="cb">
       <ul>
-        <Card.Text>
         
-          <li>Name: {(props.person.name)}</li>
-          <li>Favorite: {(props.person.favoriteColor)}</li>
-          <li>Favorite Food: {(props.person.favoriteFood)}
-          <Button variant="secondary" onClick={handleClick} style={{float: 'right'}}>Like({likes})</Button>
-          </li>
-        </Card.Text>
+        
+          <Stack gap={2}>
+            <li>Name: {(props.person.name)}</li>
+            <li>Favorite: {(props.person.favoriteColor)}</li>
+
+            <Stack direction="horizontal" gap={3}>
+            
+            <li>Favorite Food: {(props.person.favoriteFood)}</li>
+        
+            <Button variant="secondary" className='p-2 ms-auto' onClick={handleClick}>Like({likes})</Button>
+            
+            </Stack>
+          </Stack>
+        
+       
         </ul>
       </Card.Body>
     </Card>
@@ -43,7 +51,7 @@ function Row(props) {
 
 // Component for Title - different props can generate components with different text - it is dynamic
 function Header({ title }) {
-  return <h1>{title ? title : 'Default Title'}</h1>;
+  return <p className='h1'>{title ? title : 'Default Title'}</p>;
 } 
 
 // Starting point of execution"
@@ -55,7 +63,6 @@ function App() {
 
   const People = [{'name':'Meghana','favoriteFood':'Tiramisu','favoriteColor':'Blue'},
     {'name':'Spurthi','favoriteFood':'Rasmalai','favoriteColor':'Green'},
-    {'name':'Aj','favoriteFood':'Pizza','favoriteColor':'Orange'},
   ]
  
   document.title = "MyClassmates"
@@ -63,18 +70,23 @@ function App() {
   return (
   
     <div>
-      <Header title="My Classmates" />
-      
-      <ul>  
-        {/* Using stack layout from ReactBootstrap to pile the records */}
-          <Stack>
-            {/* Reading each record from the People array and using map() to iterate through the list */}
-                {People.map((person) => (
-                  // Card component for each record
-                  <Row person={person} key={person.name}></Row>
-                ))}
-          </Stack>
-      </ul>
+       <div className='container'>
+        <div className='row '>
+          <Header title="My Classmates" className=".ml-1 .px-2 "/>
+        </div>
+        <div className='row'>
+        <ul>  
+          {/* Using stack layout from ReactBootstrap to pile the records */}
+            <Stack gap={3} className='.ml-1 .px-2'>
+              {/* Reading each record from the People array and using map() to iterate through the list */}
+                  {People.map((person) => (
+                    // Card component for each record
+                    <PersonRow person={person} key={person.name} ></PersonRow>
+                  ))}
+            </Stack>
+        </ul>
+        </div>
+      </div>
     </div>
    );
 }
