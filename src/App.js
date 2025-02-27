@@ -43,7 +43,11 @@ function Header({ title }) {
 
 function App() {
   
-  const People = [{'name':'Meghana','favoriteFood':'Tiramisu','favoriteColor':'Blue'}
+  const People = [{'name':'Meghana','favoriteFood':'Tiramisu','favoriteColor':'Blue'},
+    {'name':'Spurthi','favoriteFood':'Rasmalai','favoriteColor':'Green'},
+    {'name':'Alice','favoriteFood':'Pizza','favoriteColor':'Orange'},
+    
+  
   ]
  
   document.title = "MyClassmates"
