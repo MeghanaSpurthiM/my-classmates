@@ -31,6 +31,8 @@ src/App.js
 Assuming you installed the node dependencies,
 
 $git clone https://github.com/MeghanaSpurthiM/my-classmates.git
+
 $cd my-classmates
+
 $npm start
 
