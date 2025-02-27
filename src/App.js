@@ -43,7 +43,7 @@ function Row(props) {
 
 // Component for Title - different props can generate components with different text - it is dynamic
 function Header({ title }) {
-  return <h1><Badge bg="secondary">{title ? title : 'Default Title'}</Badge></h1>;
+  return <h1>{title ? title : 'Default Title'}</h1>;
 } 
 
 // Starting point of execution"
