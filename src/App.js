@@ -1,25 +1,73 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+import Stack from 'react-bootstrap/Stack';
+
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+
+
+function Row(props) {
+  const [likes, setLikes] = React.useState(0);
+  function handleClick() {
+    setLikes(likes + 1);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Card id="customCard">
+      
+      <Card.Body id="cb">
+      <ul>
+        <Card.Text>
+        
+          <li>Name: {(props.person.name)}</li>
+          <li>Favorite: {(props.person.favoriteColor)}</li>
+          <li>Favorite Food: {(props.person.favoriteFood)}
+          <Button variant="secondary" onClick={handleClick} style={{float: 'right'}}>Like({likes})</Button>
+          </li>
+
+          
+        </Card.Text>
+        </ul>
+      </Card.Body>
+      
+    </Card>
+   
   );
 }
 
-export default App;
+function Header({ title }) {
+  return <h1><Badge bg="secondary">{title ? title : 'Default Title'}</Badge></h1>;
+} 
+
+function App() {
+  
+  const People = [{'name':'Meghana','favoriteFood':'Tiramisu','favoriteColor':'Blue'}
+  ]
+ 
+  document.title = "MyClassmates"
+
+ 
+  return (
+  
+    <div>
+      <Header title="My Classmates" />
+      <ul>
+      <Stack>
+        {People.map((person) => (
+          
+          <Row person={person} key={person.name}></Row>
+         
+        ))}
+         </Stack>
+      </ul>
+    </div>
+  );
+}
+   
+    
+
+
+
+  export default App;
